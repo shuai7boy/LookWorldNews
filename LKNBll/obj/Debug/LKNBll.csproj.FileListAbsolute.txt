@@ -1,0 +1,9 @@
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\bin\Debug\LKNBll.dll
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\bin\Debug\LKNBll.pdb
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\obj\Debug\LKNBll.csprojResolveAssemblyReference.cache
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\obj\Debug\LKNBll.dll
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\obj\Debug\LKNBll.pdb
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\bin\Debug\LKNDal.dll
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\bin\Debug\LKNModel.dll
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\bin\Debug\LKNDal.pdb
+G:\代码存放\ASP.NET代码存放\LookWorldNews\LKNBll\bin\Debug\LKNModel.pdb

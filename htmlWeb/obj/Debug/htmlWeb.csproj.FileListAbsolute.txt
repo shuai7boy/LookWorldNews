@@ -1,0 +1,5 @@
+G:\代码存放\ASP.NET代码存放\LookWorldNews\htmlWeb\bin\Debug\htmlWeb.dll
+G:\代码存放\ASP.NET代码存放\LookWorldNews\htmlWeb\bin\Debug\htmlWeb.pdb
+G:\代码存放\ASP.NET代码存放\LookWorldNews\htmlWeb\obj\Debug\htmlWeb.dll
+G:\代码存放\ASP.NET代码存放\LookWorldNews\htmlWeb\obj\Debug\htmlWeb.pdb
+G:\代码存放\ASP.NET代码存放\LookWorldNews\htmlWeb\obj\Debug\htmlWeb.csprojResolveAssemblyReference.cache

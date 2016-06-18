@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <style type="text/css">
+       #backControl{
+          width:825px;margin:0px auto;
+       }
+       #dvLeft>ul li{
+           list-style:none;margin-left:-40px;margin-top:80px;
+       }
+       #dvLeft{
+        width:120px;height:480px;float:left;border:1px solid blue;
+       }
+       #dvRight{
+           width:700px;height:480px;float:left;border:1px solid blue;
+       }
+    </style>
+    <script src="~/Content/kindeditor-4.1.10/kindeditor-all.js"></script>    
+    <script src="~/Content/kindeditor-4.1.10/lang/zh_CN.js"></script>   
+    <script>       
+        var editor
+        KindEditor.options.filterMode = false;
+        KindEditor.ready(function (K) {
+              editor = K.create('#editor_id', {
+                cssPath: '/Content/kindeditor-4.1.10/plugins/code/prettify.css',
+                uploadJson: '/Content/kindeditor-4.1.10/asp.net/upload_json.ashx',
+                fileManagerJson: '/Content/kindeditor-4.1.10/asp.net/file_manager_json.ashx',
+                allowFileManager: true,
+                afterCreate: function () {
+                    var self = this;
+                    K.ctrl(document, 13, function () {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                    K.ctrl(self.edit.doc, 13, function () {
+                        self.sync();
+                        K('form[name=example]')[0].submit();
+                    });
+                }
+            });
+        
+           
+        });
+
+        $(function () {
+            $("#btnSubmit").click(function () {
+                var html = editor.html();               
+                html=encodeURI(html);
+                var title = $("#title").val();
+                var author = $("#author").val();
+                var control = $("#control").val();
+                var sendData = { title: title, author: author, html: html, control: control };
+                //var form1 = $("#frm1").serialize();
+
+                $.post("/BackControl/Control", sendData, function (_data) {
+                    //alert(_data);
+                    if (_data == "1") {
+                        $("input").attr("value", "");
+                        //清空KindEditor
+                        KindEditor.instances[0].html("");// 0表示第一个KindEditor编辑器对象                    
+                        window.location.href = "/Home/Index";
+                    } else {
+                        alert(_data);
+                    }                    
+                });
+               
+                
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div id="backControl">
+        <div id="dvHeader">
+            <h3> 欢迎进入LookWorldNews管理界面...</h3>
+        </div>
+        <div id="dvContent">
+            <div id="dvLeft">
+                <ul>
+                    <li><a href="#">首页推荐管理</a></li>
+                    <li><a href="#">国际新闻管理</a></li>
+                    <li><a href="#">国内新闻管理</a></li>
+                </ul>
+            </div>
+            <div id="dvRight">
+               
+                    标题:<input type="text" id="title"/><br/>作者:<input type="text" id="author"/><br/>                   
+                <textarea id="editor_id" name="content" style="width:700px;height:300px;" ClientIDMode="Static">
+                    @*&lt;strong&gt;HTML内容&lt;/strong&gt;*@
+                </textarea><br/>                  
+
+                <select name="control" id="control">
+                    <option value="1">首页推荐管理</option>
+                    <option value="2">国际新闻管理</option>
+                    <option value="3">国内新闻管理</option>
+                </select>
+                    <input type="button" id="btnSubmit" value="提交"/>
+               
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type="text/css">
+        #dvMain{
+            width:630px;border:1px solid blue;margin:0px auto;
+        }
+       #dvTop>ul{
+           width:400px;margin:0px auto;
+        }
+       #dvTop>ul li{
+            list-style:none;float:left;margin:20px;font-size:20px;
+        }
+       #dvCenter>ul{
+           margin-left:-40px;
+       }
+       #dvCenter>ul li{
+            list-style:none;
+       }
+        #dvTop{
+            width:630px;height:70px;border:1px solid black;text-align:center;
+        }
+        #dvCenter{
+            width:630px;height:500px;border:1px solid yellow;
+        }
+        #dvFooter{
+            width:630px;height:100px;border:1px solid red;
+        }
+        .dvImg{
+            width:200px;height:150px;border:1px  solid blue;float:left;position:absolute;
+        }
+        .dvRight{
+            width:420px;height:150px;border:1px solid blue;float:left;position:absolute;margin-left:210px;
+        }
+        .divC{
+            width:630px;height:150px;
+        }
+        .img1 img{
+            display:none;
+        }
+        .img1{
+             width:390px;
+             height:67px;
+             text-overflow:ellipsis;             
+             overflow:hidden;            
+             display:-webkit-box;
+             -webkit-box-orient:vertical;
+             -webkit-line-clamp:2; /*后面的3是设置显示几行*/
+        }
+    </style>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript">
+       
+        $(function () {
+            $("#dvHead").click(function () {
+                $("#ul1").children().remove();
+                pageData();
+                return false;
+            });       
+            //分页查询
+            function pageData(pIndex,pSize) {
+                $.getJSON("/Home/HeaderNews?id=" + Math.random(), { pageIndex: pIndex, pageSize: pSize }, function (_data) {
+                    var list = _data.list;
+                    $("#ul1").children().remove();
+                    for (var i = 0; i < list.length; i++) {
+                        $("<li><div class='divC'><div class='dvImg' style='background-image:url(" + list[i].ImgUrl + ");'></div><div class='dvRight'> <h3>" + list[i].Title + "</h3><div class='img1'>" + list[i].Content + "</div><a href='" + list[i].DetailUrl + "' target='_blank'>阅读全文</a></div></div></li>").appendTo("#ul1");
+                    }
+                    //$("<li><div class='divC'><div class='dvImg' style='background-image:url(" + _data.imgUrl + ");'></div><div class='dvRight'> <h3>" + _data.title + "</h3><p>" + _data.content + "</p><a href='#'>阅读全文</a></div></div></li>").appendTo("#ul1");
+                    var navPage = _data.navPage;
+                    $("<li><p id='pNav'>" + navPage + "</p></li>").appendTo("#ul1");
+                    $("#pNav a").click(clickShow);
+                    
+                });
+            }
+            function clickShow() {
+              
+                var url = this.href;               
+                var navData = url.substring(url.lastIndexOf('?') + 1);               
+                var pSize = navData.split('&')[0].split('=')[1];                
+                var pIndex = navData.split('&')[1].split('=')[1];            
+                pageData(pIndex, pSize);                
+                return false;
+            }
+
+        
+            //----------------------------------------------------
+            //国际
+            $("#dvGuoJ").click(function () {
+                $("#ul1").children().remove();
+                pageData2();
+                return false;
+            });
+            //分页查询
+            function pageData2(pIndex, pSize) {
+                $.getJSON("/Home/GuoJiNews?id=" + Math.random(), { pageIndex: pIndex, pageSize: pSize }, function (_data) {
+                    var list = _data.list;
+                    $("#ul1").children().remove();
+                    for (var i = 0; i < list.length; i++) {
+                        $("<li><div class='divC'><div class='dvImg' style='background-image:url(" + list[i].ImgUrl + ");'></div><div class='dvRight'> <h3>" + list[i].Title + "</h3><div class='img1'>" + list[i].Content + "</div><a href='" + list[i].DetailUrl + "' target='_blank'>阅读全文</a></div></div></li>").appendTo("#ul1");
+                    }
+                    //$("<li><div class='divC'><div class='dvImg' style='background-image:url(" + _data.imgUrl + ");'></div><div class='dvRight'> <h3>" + _data.title + "</h3><p>" + _data.content + "</p><a href='#'>阅读全文</a></div></div></li>").appendTo("#ul1");
+                    var navPage = _data.navPage;
+                    $("<li><p id='pNav'>" + navPage + "</p></li>").appendTo("#ul1");
+                    $("#pNav a").click(clickShow2);
+
+                });
+            }
+            function clickShow2() {
+
+                var url = this.href;
+                var navData = url.substring(url.lastIndexOf('?') + 1);
+                var pSize = navData.split('&')[0].split('=')[1];
+                var pIndex = navData.split('&')[1].split('=')[1];
+                pageData2(pIndex, pSize);
+                return false;
+            }
+            //------------------------------------
+            //国内
+            $("#dvGuoN").click(function () {
+                $("#ul1").children().remove();
+                pageData3();
+                return false;
+            });
+            //分页查询
+            function pageData3(pIndex, pSize) {
+                $.getJSON("/Home/GuoNeiNews?id=" + Math.random(), { pageIndex: pIndex, pageSize: pSize }, function (_data) {
+                    var list = _data.list;
+                    $("#ul1").children().remove();
+                    for (var i = 0; i < list.length; i++) {
+                        $("<li><div class='divC'><div class='dvImg' style='background-image:url(" + list[i].ImgUrl + ");'></div><div class='dvRight'> <h3>" + list[i].Title + "</h3><div class='img1'>" + list[i].Content + "</div><a href='" + list[i].DetailUrl + "' target='_blank'>阅读全文</a></div></div></li>").appendTo("#ul1");
+                    }
+                    //$("<li><div class='divC'><div class='dvImg' style='background-image:url(" + _data.imgUrl + ");'></div><div class='dvRight'> <h3>" + _data.title + "</h3><p>" + _data.content + "</p><a href='#'>阅读全文</a></div></div></li>").appendTo("#ul1");
+                    var navPage = _data.navPage;
+                    $("<li><p id='pNav'>" + navPage + "</p></li>").appendTo("#ul1");
+                    $("#pNav a").click(clickShow3);
+
+                });
+            }
+            function clickShow3() {
+
+                var url = this.href;
+                var navData = url.substring(url.lastIndexOf('?') + 1);
+                var pSize = navData.split('&')[0].split('=')[1];
+                var pIndex = navData.split('&')[1].split('=')[1];
+                pageData3(pIndex, pSize);
+                return false;
+            }
+     //----------------------
+        });
+        
+    </script>
+</head>
+<body>
+    <div id="dvMain">
+        <div id="dvTop">
+         <ul>
+             <li><a href="HeaderNews" id="dvHead">首页推荐</a> </li><li><a href="GuoJiNews" id="dvGuoJ">国际新闻</a> </li><li><a href="GuoNeiNews" id="dvGuoN">国内新闻</a> </li>
+         </ul>
+        </div>
+        <div id="dvCenter">                        
+            <ul id="ul1">           
+            </ul>          
+            <p id="pNav"></p>            
+        </div>
+        <div id="dvFooter">
+           <ul>
+               <li>制作人:日月君</li>
+               <li>后台入口:<a href="/Login/Index" target="_blank">进入后台</a></li>
+           </ul>
+        </div>
+    </div>
+</body>
+</html>

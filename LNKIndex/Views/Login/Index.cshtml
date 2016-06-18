@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        #dvLogin{
+            width:293px;
+            margin:0px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="dvLogin">
+        <p style="font-size:20px;color:blue;">管理员登陆界面:</p>
+        <form action="/Login/LoginCheck">
+            <table>
+                <tr>
+                    <td>管理员登陆名:</td>
+                    <td><input type="text" id="txtUser" name="txtUser" /></td>
+                </tr>
+                <tr>
+                    <td>登陆密码:</td>
+                    <td><input type="password" id="txtPwd" name="txtPwd" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="开始登陆" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
